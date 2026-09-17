@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixel-TTS: Image-based Text Rendering for Robust Text-to-Speech</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fafafa;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 50px 30px;
+    }
+
+    .header {
+      text-align: center;
+      background: #ffaf01;
+      padding: 40px 30px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
+       
+    }
+
+    h1 {
+      font-size: 38px;
+      margin: 0 0 15px;
+      color: #1f2937;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #667085;
+      margin: 0;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      color: #1f2937;
+      margin-top: 5px;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 21px;
+      color: #374151;
+      margin-top: 30px;
+    }
+
+    p {
+      text-align: center;
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 25px auto;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    th, td {
+      border: 1px solid #e1e5ea;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f3f6fa;
+      font-weight: bold;
+      color: #374151;
+    }
+
+    tr:hover td {
+      background: #fafcff;
+    }
+
+    td:first-child {
+      text-align: left;
+      width: 35%;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    audio {
+      width: 220px;
+      outline: none;
+    }
+
+    .footer {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin-top: 35px;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="header">
+		<h1>Pixel-TTS: Image-based Text Rendering for Robust Text-to-Speech</h1>
+		
+	</div>
+	</div>
+<div class="container"> 
+	<section> 
+		<h2>Speech Synthesis Comparison: Text-TTS and Pixel-TTS</h2>
+		<p>Each row compares the synthesized speech produced by Text-TTS and Pixel-TTS for the same input sentence.</p>
+		<table>
+			<tr>
+			<th>Sentence</th>
+			<th>Text-TTS</th>
+			<th>Pixel-TTS</th>
+			</tr>
+
+			<tr>
+			<td>He began a confused complaint against the wizard, who had vanished behind the curtain on the left. </td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/61-70968-0000.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/61-70968-0000.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>Also, a popular contrivance whereby love making may be suspended but not stopped during the picnic season. </td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/121-121726-0000.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/121-121726-0000.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>Saturday, august fifteenth. - The sea unbroken all round. No land in sight. </td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/260-123286-0000.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/260-123286-0000.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>I did not wrong myself so, but I placed A wrong on thee.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/908-31957-0002.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/908-31957-0002.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>One day, when the boy was sent by his grandfather with a message to a relation, he passed along a street in which there was a great concourse of horsemen. </td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/5639-40744-0024.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/5639-40744-0024.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>It was a serious crime indeed, mister Watson told them, and Tom Gates bade fair to serve a lengthy term in state's prison as a consequence of his rash act.</td>
+			<td><audio controls><source src=demo_audios/Text-Model/librispeech-pc/6829-68769-0001.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/6829-68769-0001.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>Under ordinary conditions Reynolds was sure to be elected, but the Committee proposed to sacrifice him in order to elect Hopkins. </td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/6829-68771-0004.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/6829-68771-0004.wav" type="audio/wav"></audio></td>
+			
+			</tr>
+
+			<tr>
+			<td>But it is the cigarette which chiefly has brought the modern drama to its present state of perfection.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/7176-92135-0044.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/7176-92135-0044.wav" type="audio/wav"></audio></td>
+		
+			</tr>
+
+			<tr>
+			<td>Of this party, Edward, a boy of seventeen, called forth much sympathy; he too was claimed by Hollan.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/8463-287645-0003.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/8463-287645-0003.wav" type="audio/wav"></audio></td>
+			</tr>
+			
+			<tr>
+			<td>That evening Trot gave a grand ball in the palace, to which the most important of the Pinkies and the Blueskins were invited.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/librispeech-pc/8555-284449-0019.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/librispeech-pc/8555-284449-0019.wav" type="audio/wav"></audio></td>
+			</tr>
+		</table>
+	</section>
+  
+   <section>
+		<h2>Robustness Evaluation: Text-TTS vs. Pixel-TTS</h2>
+		<p>The following speech samples compare Text-TTS and Pixel-TTS under noisy text variations, including Unicode and L33t Speak.</p>
+
+		<h3> Unicode Noise Robustness</h3>
+		
+		<table>
+		<tr>
+		<th>Original Sentence</th>
+		<th> Noisy Sentence</th>
+		<th>Text-TTS</th>
+		<th>Pixel-TTS</th>
+		</tr>
+		<tr>
+		<td>Like as not, young master, though I am an old man</td>
+		<td>Likе as ηot, young master, though I am an old man</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/unicode/0.2/61-70968-0009.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/unicode/0.2/61-70968-0009.wav" type="audio/wav"></audio></td>
+		</tr>
+		
+		<tr>
+		<td>The awkward thing was that they had practically no other relations and that his own affairs took up all his time.</td>
+		<td>The awkwaгd tһing was thɑt tһey hɑԁ practicɑlly ηo oτhеr relɑtioηs and thɑt һis оwn ɑffairs took up all his time.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/unicode/0.2/121-127105-0028.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/unicode/0.2/121-127105-0028.wav" type="audio/wav"></audio></td>
+		</tr>
+		
+		<tr>
+		<td>But first I will tell you that for many years I have longed for a servant to help me with the housework and to cook the meals and wash the dishes.</td>
+		<td>But fіrst I wіll τеll you tһaτ fоr mɑny yеɑrs I have lоηged fоr a servaηt to hеlp mе with the houѕework and to cook τhe mealѕ and wasһ the dishes.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/unicode/0.2/1284-1180-0026.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/unicode/0.2/1284-1180-0026.wav" type="audio/wav"></audio></td>
+		</tr>
+		<tr>
+		<td>He selected a small gold bottle with a pepper box top, so that the powder might be sprinkled on any object through the small holes.</td>
+		<td>He ѕelеcted a smɑll gold bottle wіτһ a pepper box top, so τhat the powdеr migһt bе sprinklеd on any оbjеct through τһe ѕmall holеs.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/unicode/0.2/1284-1181-0014.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/unicode/0.2/1284-1181-0014.wav" type="audio/wav"></audio></td>
+		</tr>
+		<tr>
+		<td>My bed was unexceptionably comfortable, but, in my then mood, I could have wished it a great deal more modern.</td>
+		<td>My bed wɑs uηexceptionably comfortable, but, iη my τhen mood, I could hɑve wiѕhed iτ a great ԁeal more mоdегη.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/unicode/0.2/5683-32866-0021.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/unicode/0.2/5683-32866-0021.wav" type="audio/wav"></audio></td>
+		</tr>
+		</table>
+	
+		<h3> L33tSpeak Noise Robustness</h3>
+		
+		<table>
+		<tr>
+		<th>Original Sentence</th>
+		<th> Noisy Sentence</th>
+		<th>Text-TTS</th>
+		<th>Pixel-TTS</th>
+		</tr>
+		<tr>
+		<td>Like as not, young master, though I am an old man</td>
+		<td>Like 4s not, young master, though I am an old m4n</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/l33tspeak/0.2/61-70968-0009.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/l33tspeak/0.2/61-70968-0009.wav" type="audio/wav"></audio></td>
+		</tr>
+		
+		<tr>
+		<td>The awkward thing was that they had practically no other relations and that his own affairs took up all his time.</td>
+		<td>The awkward thing was that they had pr4ct1cally no 0ther relati0n5 4nd th4t h1s own affairs took up 4ll his time.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/l33tspeak/0.2/121-127105-0028.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/l33tspeak/0.2/121-127105-0028.wav" type="audio/wav"></audio></td>
+		</tr>
+		
+		<tr>
+		<td>But first I will tell you that for many years I have longed for a servant to help me with the housework and to cook the meals and wash the dishes.</td>
+		<td>But first I w1ll t3ll you that for m4ny years I have longed ƒor a s3rvant to h3lp me with the hou5ework and to cook the meals and w4sh the dishes.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/l33tspeak/0.2/1284-1180-0026.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/l33tspeak/0.2/1284-1180-0026.wav" type="audio/wav"></audio></td>
+		</tr>
+		<tr>
+		<td>He selected a small gold bottle with a pepper box top, so that the powder might be sprinkled on any object through the small holes.</td>
+		<td>He 5elected a small gold bottle with a pepper box top, so that th3 p0wder might b3 5prinkled 0n any obj3ct through the small holes.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/l33tspeak/0.2/1284-1181-0014.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/l33tspeak/0.2/1284-1181-0014.wav" type="audio/wav"></audio></td>
+		</tr>
+		<tr>
+		<td>My bed was unexceptionably comfortable, but, in my then mood, I could have wished it a great deal more modern.</td>
+		<td>My bed was unexc3pti0n4bly comƒortabl3, but, in my th3n mood, I could have wished it a great deal m0re modern.</td>
+		<td><audio controls><source src="demo_audios/Text-Model/noises/l33tspeak/0.2/5683-32866-0021.wav" type="audio/wav"></audio></td>
+		<td><audio controls><source src="demo_audios/Pixel-Model/noises/l33tspeak/0.2/5683-32866-0021.wav" type="audio/wav"></audio></td>
+		</tr>
+		</table>
+	
+	</section>
+ 
+	<section>
+		<h2>Out-of-Domain Evaluation</h2>
+		<p>The following speech samples compare Text-TTS and Pixel-TTS on out-of-domain datasets, including SEED-TTS-EN , LJSpeech and L2-ARCTIC.</p>
+
+		<h3>SEED-TTS-EN</h3>
+		<table>
+			<tr>
+			<th>Sentence</th>
+			<th>Text-TTS</th>
+			<th>Pixel-TTS</th>
+			</tr>
+
+			<tr>
+			<td>The hunter was alerted by the sound of rustling vegetation behind her.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/SEED-TTS_EN/common_voice_en_79862-common_voice_en_79860.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/SEED-TTS_EN/common_voice_en_79862-common_voice_en_79860.wav" type="audio/wav"></audio></td>
+			</tr>
+		
+			<tr>
+			<td>what is the forecast for California for rain</td>
+			<td><audio controls><source src="demo_audios/Text-Model/SEED-TTS_EN/common_voice_en_167249-common_voice_en_167246.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/SEED-TTS_EN/common_voice_en_167249-common_voice_en_167246.wav" type="audio/wav"></audio></td>
+			</tr>
+			
+			<tr>
+			<td>The "smoking pipe" shape was designed to increase the quantity of available ink.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/SEED-TTS_EN/common_voice_en_22925816-common_voice_en_22925815.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/SEED-TTS_EN/common_voice_en_22925816-common_voice_en_22925815.wav" type="audio/wav"></audio></td>
+			</tr>
+			
+			<tr>
+			<td>Some large firms or specialized jobs require a master's degree.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/SEED-TTS_EN/common_voice_en_23728823-common_voice_en_23728827.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/SEED-TTS_EN/common_voice_en_23728823-common_voice_en_23728827.wav" type="audio/wav"></audio></td>
+			</tr>
+			
+			<tr>
+			<td>He has also authored a number of books on the subject.</td>
+			<td><audio controls><source src="demo_audios/Text-Model/SEED-TTS_EN/common_voice_en_25190404-common_voice_en_25190411.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/SEED-TTS_EN/common_voice_en_25190404-common_voice_en_25190411.wav" type="audio/wav"></audio></td>
+			</tr>
+		</table>
+		
+		
+		<h3>LJSPeech</h3>
+		<table>
+			<tr>
+			<th>Sentence</th>
+			<th>Text-TTS</th>
+			<th>Pixel-TTS</th>
+			</tr>
+
+			<tr>
+			<td>yet their type is artistically on a much lower level than Jenson's, and in fact</td>
+			<td><audio controls><source src="demo_audios/Text-Model/LJSpeech/LJ001-0052.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/LJSpeech/LJ001-0052.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>directly under the chapel, in which there were three cells, used either for the confinement of disorderly and refractory prisoners</td>
+			<td><audio controls><source src="demo_audios/Text-Model/LJSpeech/LJ002-0064.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/LJSpeech/LJ002-0064.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>The bread was issued every alternate day; and while some prisoners often ate their whole allowance at once</td>
+			<td><audio controls><source src="demo_audios/Text-Model/LJSpeech/LJ002-0320.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/LJSpeech/LJ002-0320.wav" type="audio/wav"></audio></td>
+			</tr>
+		
+		</table>
+		
+
+		<h3>L2-ARCTIC</h3>
+		<table>
+			<tr>
+			<th>Sentence</th>
+			<th>Text-TTS</th>
+			<th>Pixel-TTS</th>
+			</tr>
+
+			<tr>
+			<td>Not at this particular case Tom apologized Whittemore</td>
+			<td><audio controls><source src="demo_audios/Text-Model/L2Arctic/ABA_arctic_a0002.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/L2Arctic/ABA_arctic_a0002.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>Yet in accordance with Ernest's test of truth it worked</td>
+			<td><audio controls><source src="demo_audios/Text-Model/L2Arctic/BWC_arctic_a0509.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/L2Arctic/BWC_arctic_a0509.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>Nevertheless we found ourselves once more in the high seat of abundance</td>
+			<td><audio controls><source src="demo_audios/Text-Model/L2Arctic/HJK_arctic_a0430.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/L2Arctic/HJK_arctic_a0430.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>I just do appreciate it without being able to express my feelings</td>
+			<td><audio controls><source src="demo_audios/Text-Model/L2Arctic/LXC_arctic_a0368.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/L2Arctic/LXC_arctic_a0368.wav" type="audio/wav"></audio></td>
+			</tr>
+			<tr>
+			<td>Red Eye swung back and forth on the branch farther down</td>
+			<td><audio controls><source src="demo_audios/Text-Model/L2Arctic/MBMPS_arctic_a0335.wav" type="audio/wav"></audio></td>
+			<td><audio controls><source src="demo_audios/Pixel-Model/L2Arctic/MBMPS_arctic_a0335.wav" type="audio/wav"></audio></td>
+			</tr>
+		</table>
+	
+	
+	</section>
+  
+ 
+</div>
+</body>
+</html>
